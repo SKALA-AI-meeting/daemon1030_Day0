@@ -1,0 +1,244 @@
+[
+  {
+    "name": "get_session_context",
+    "description": "현재 세션의 공개 과제·단계·남은 시간·업무 revision을 조회합니다. 미래 사건과 평가 결과는 제공하지 않습니다.",
+    "inputSchema": {
+      "properties": {},
+      "title": "get_session_contextArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_session_contextDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "list_tasks",
+    "description": "현재 세션의 태스크·담당자·상태·revision을 조회합니다.",
+    "inputSchema": {
+      "properties": {},
+      "title": "list_tasksArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "list_tasksDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_document_section",
+    "description": "현재 세션의 과제 문서 항목을 조회합니다.",
+    "inputSchema": {
+      "properties": {
+        "section_id": {
+          "title": "Section Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "section_id"
+      ],
+      "title": "get_document_sectionArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_document_sectionDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "propose_task_assignment",
+    "description": "전체 태스크의 candidate/colleague 분담안을 제안합니다. 지원자 수락 없이 확정하지 않습니다.",
+    "inputSchema": {
+      "properties": {
+        "assignments": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Assignments",
+          "type": "object"
+        },
+        "expected_revision": {
+          "title": "Expected Revision",
+          "type": "integer"
+        },
+        "command_id": {
+          "title": "Command Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "assignments",
+        "expected_revision",
+        "command_id"
+      ],
+      "title": "propose_task_assignmentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "propose_task_assignmentDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "apply_task_assignment",
+    "description": "진행자 코드 전용: 지원자 수락 기록을 검증한 분업안을 적용합니다.",
+    "inputSchema": {
+      "properties": {
+        "proposal_id": {
+          "title": "Proposal Id",
+          "type": "string"
+        },
+        "expected_revision": {
+          "title": "Expected Revision",
+          "type": "integer"
+        },
+        "command_id": {
+          "title": "Command Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "proposal_id",
+        "expected_revision",
+        "command_id"
+      ],
+      "title": "apply_task_assignmentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "apply_task_assignmentDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "update_task_status",
+    "description": "AI 동료 자신의 태스크 상태를 todo/doing/done으로 바꿉니다. command_id와 현재 revision이 필요합니다.",
+    "inputSchema": {
+      "properties": {
+        "task_id": {
+          "title": "Task Id",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "expected_revision": {
+          "title": "Expected Revision",
+          "type": "integer"
+        },
+        "command_id": {
+          "title": "Command Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "task_id",
+        "status",
+        "expected_revision",
+        "command_id"
+      ],
+      "title": "update_task_statusArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "update_task_statusDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "publish_colleague_draft",
+    "description": "동료 담당 항목의 초안을 공유합니다. 지원자 담당 내용을 덮어쓸 수 없습니다.",
+    "inputSchema": {
+      "properties": {
+        "section_id": {
+          "title": "Section Id",
+          "type": "string"
+        },
+        "content": {
+          "title": "Content",
+          "type": "string"
+        },
+        "expected_revision": {
+          "title": "Expected Revision",
+          "type": "integer"
+        },
+        "command_id": {
+          "title": "Command Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "section_id",
+        "content",
+        "expected_revision",
+        "command_id"
+      ],
+      "title": "publish_colleague_draftArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "publish_colleague_draftDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "record_observation",
+    "description": "규칙 실행기 전용: 사전에 등록된 규칙과 실제 원본 근거로 관찰 사실을 저장합니다. 일반 모델은 사용할 수 없습니다.",
+    "inputSchema": {
+      "properties": {
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "competency_id": {
+          "title": "Competency Id",
+          "type": "string"
+        },
+        "rule_version": {
+          "title": "Rule Version",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "facts": {
+          "additionalProperties": true,
+          "title": "Facts",
+          "type": "object"
+        },
+        "command_id": {
+          "title": "Command Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "competency_id",
+        "rule_version",
+        "evidence_ids",
+        "facts",
+        "command_id"
+      ],
+      "title": "record_observationArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "record_observationDictOutput",
+      "type": "object"
+    }
+  }
+]

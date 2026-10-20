@@ -1,0 +1,376 @@
+{
+  "$defs": {
+    "CompanyDocument": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "content": {
+          "title": "Content",
+          "type": "string"
+        },
+        "release_after_seconds": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Release After Seconds",
+          "type": "integer"
+        },
+        "source": {
+          "const": "scenario",
+          "default": "scenario",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content"
+      ],
+      "title": "CompanyDocument",
+      "type": "object"
+    },
+    "DeliverableCriterion": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "section_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Section Ids",
+          "type": "array"
+        },
+        "source_document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Document Ids",
+          "type": "array"
+        },
+        "after_event_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "After Event Id"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "section_ids",
+        "source_document_ids"
+      ],
+      "title": "DeliverableCriterion",
+      "type": "object"
+    },
+    "ObservationRule": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "default": "",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "default": "v1",
+          "title": "Version",
+          "type": "string"
+        },
+        "competency_id": {
+          "title": "Competency Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "message_after_event",
+            "document_update_after_event"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "label": {
+          "default": "",
+          "title": "Label",
+          "type": "string"
+        },
+        "channel": {
+          "default": "team",
+          "enum": [
+            "team",
+            "dm"
+          ],
+          "title": "Channel",
+          "type": "string"
+        },
+        "section_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section Id"
+        },
+        "window_seconds": {
+          "default": 900,
+          "maximum": 28800,
+          "minimum": 1,
+          "title": "Window Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "competency_id",
+        "kind",
+        "event_id"
+      ],
+      "title": "ObservationRule",
+      "type": "object"
+    },
+    "ReviewConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "title": "Version",
+          "type": "string"
+        },
+        "competency_criteria": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Competency Criteria",
+          "type": "object"
+        },
+        "deliverable_criteria": {
+          "items": {
+            "$ref": "#/$defs/DeliverableCriterion"
+          },
+          "minItems": 1,
+          "title": "Deliverable Criteria",
+          "type": "array"
+        }
+      },
+      "required": [
+        "version",
+        "competency_criteria",
+        "deliverable_criteria"
+      ],
+      "title": "ReviewConfig",
+      "type": "object"
+    },
+    "ScenarioEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "at_seconds": {
+          "minimum": 0,
+          "title": "At Seconds",
+          "type": "integer"
+        },
+        "actor": {
+          "default": "system",
+          "enum": [
+            "leader",
+            "colleague",
+            "system"
+          ],
+          "title": "Actor",
+          "type": "string"
+        },
+        "content": {
+          "title": "Content",
+          "type": "string"
+        },
+        "actor_name": {
+          "default": "",
+          "title": "Actor Name",
+          "type": "string"
+        },
+        "role_updates": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Role Updates",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "at_seconds",
+        "content"
+      ],
+      "title": "ScenarioEvent",
+      "type": "object"
+    },
+    "Section": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "assignee": {
+          "default": "candidate",
+          "enum": [
+            "candidate",
+            "colleague"
+          ],
+          "title": "Assignee",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
+      "title": "Section",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "is_fixture": {
+      "default": false,
+      "title": "Is Fixture",
+      "type": "boolean"
+    },
+    "duration_seconds": {
+      "default": 7200,
+      "maximum": 28800,
+      "minimum": 60,
+      "title": "Duration Seconds",
+      "type": "integer"
+    },
+    "competency_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Competency Ids",
+      "type": "array"
+    },
+    "brief": {
+      "default": "",
+      "title": "Brief",
+      "type": "string"
+    },
+    "role_instructions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Role Instructions",
+      "type": "object"
+    },
+    "role_names": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Role Names",
+      "type": "object"
+    },
+    "sections": {
+      "items": {
+        "$ref": "#/$defs/Section"
+      },
+      "title": "Sections",
+      "type": "array"
+    },
+    "documents": {
+      "items": {
+        "$ref": "#/$defs/CompanyDocument"
+      },
+      "title": "Documents",
+      "type": "array"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/ScenarioEvent"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "observation_rules": {
+      "items": {
+        "$ref": "#/$defs/ObservationRule"
+      },
+      "title": "Observation Rules",
+      "type": "array"
+    },
+    "review": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "id",
+    "title"
+  ],
+  "title": "ScenarioConfig",
+  "type": "object"
+}

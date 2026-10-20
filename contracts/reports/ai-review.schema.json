@@ -1,0 +1,147 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "CompetencyReview": {
+      "additionalProperties": false,
+      "properties": {
+        "competency_id": {
+          "title": "Competency Id",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "#/$defs/Finding"
+        },
+        "strength": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Finding"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "improvement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Finding"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "competency_id",
+        "summary",
+        "strength",
+        "improvement"
+      ],
+      "title": "CompetencyReview",
+      "type": "object"
+    },
+    "DeliverableReview": {
+      "additionalProperties": false,
+      "properties": {
+        "criterion_id": {
+          "title": "Criterion Id",
+          "type": "string"
+        },
+        "judgment": {
+          "enum": [
+            "met",
+            "partial",
+            "not_met",
+            "insufficient_evidence"
+          ],
+          "title": "Judgment",
+          "type": "string"
+        },
+        "finding": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Finding"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "criterion_id",
+        "judgment",
+        "finding"
+      ],
+      "title": "DeliverableReview",
+      "type": "object"
+    },
+    "Finding": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "evidence"
+      ],
+      "title": "Finding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "$ref": "#/$defs/Finding"
+    },
+    "competencies": {
+      "items": {
+        "$ref": "#/$defs/CompetencyReview"
+      },
+      "title": "Competencies",
+      "type": "array"
+    },
+    "deliverables": {
+      "items": {
+        "$ref": "#/$defs/DeliverableReview"
+      },
+      "title": "Deliverables",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "competencies",
+    "deliverables"
+  ],
+  "title": "AIReview",
+  "type": "object"
+}

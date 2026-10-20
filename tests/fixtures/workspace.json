@@ -1,0 +1,14 @@
+{
+  "id":"fixture-workspace-v1",
+  "title":"공통 기능 확인용 워크스페이스",
+  "status":"published",
+  "is_fixture":true,
+  "duration_seconds":7200,
+  "competency_ids":["C01","C02","C03","C04","C05","C06"],
+  "brief":"기능 확인용 실행입니다. 대화·문서 저장·태스크 변경·제출을 확인할 수 있으며 실제 채용 평가가 아닙니다.",
+  "role_instructions":{"colleague":"업무를 돕는 동료입니다. 제공된 자료 밖의 사실을 만들지 마세요.","assistant":"요청된 업무를 돕고 확인되지 않은 사실은 확인되지 않았다고 말하세요."},
+  "sections":[{"id":"notes","title":"작업 문서","assignee":"candidate"},{"id":"draft","title":"동료 초안","assignee":"colleague"}],
+  "documents":[],
+  "events":[],
+  "observation_rules":[]
+}

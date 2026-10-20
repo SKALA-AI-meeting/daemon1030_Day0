@@ -1,0 +1,110 @@
+name: dayzero
+x-python: &python
+  build:
+    context: ..
+    dockerfile: infra/docker/python.Dockerfile
+  image: dayzero-python:local
+  environment: &app-env
+    DATABASE_URL: postgresql+psycopg://dayzero:${POSTGRES_PASSWORD:-dayzero}@postgres:5432/dayzero
+    AUTH_SECRET: ${AUTH_SECRET:-}
+    DAYZERO_DEVELOPMENT: ${DAYZERO_DEVELOPMENT:-false}
+    AGENT_URL: http://agent:8001
+    GATEWAY_URL: http://gateway:8000
+    BUSINESS_MCP_URL: http://business-mcp:9101/mcp
+    RAG_MCP_URL: http://rag-mcp:9102/mcp
+    RABBITMQ_URL: amqp://dayzero:${RABBITMQ_PASSWORD:-dayzero}@rabbitmq:5672/
+    OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    MCP_HOST: 0.0.0.0
+    AGENT_CHECKPOINT_PATH: /app/data/agent-checkpoints.sqlite
+    EMBEDDING_URL: ${EMBEDDING_URL:-}
+    EMBEDDING_MODEL_ID: ${EMBEDDING_MODEL_ID:-}
+services:
+  postgres:
+    image: pgvector/pgvector:pg18
+    environment:
+      POSTGRES_USER: dayzero
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dayzero}
+      POSTGRES_DB: dayzero
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dayzero"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  rabbitmq:
+    image: rabbitmq:4.1-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: dayzero
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-dayzero}
+    ports:
+      - "127.0.0.1:5673:5672"
+    volumes:
+      - rabbit_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  migrate:
+    <<: *python
+    profiles: [app]
+    command: [python, -m, infra.bootstrap]
+    depends_on:
+      postgres: { condition: service_healthy }
+  gateway:
+    <<: *python
+    profiles: [app]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      rabbitmq: { condition: service_healthy }
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  agent:
+    <<: *python
+    profiles: [app]
+    command: [python, -m, uvicorn, services.agent.main:app, --host, 0.0.0.0, --port, "8001"]
+    volumes:
+      - agent_data:/app/data
+  business-mcp:
+    <<: *python
+    profiles: [app]
+    command: [python, -m, services.business_mcp.server]
+  rag-mcp:
+    <<: *python
+    profiles: [app]
+    command: [python, -m, services.rag_mcp.server]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+  outbox:
+    <<: *python
+    profiles: [app]
+    command: [python, -m, services.gateway.outbox.publisher]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      rabbitmq: { condition: service_healthy }
+  report-worker:
+    <<: *python
+    profiles: [app]
+    command: [python, -m, services.report_worker.main]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      rabbitmq: { condition: service_healthy }
+  web:
+    profiles: [app]
+    build:
+      context: ..
+      dockerfile: infra/docker/web.Dockerfile
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      gateway: { condition: service_healthy }
+volumes:
+  postgres_data:
+  rabbit_data:
+  agent_data:

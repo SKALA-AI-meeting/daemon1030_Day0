@@ -1,0 +1,214 @@
+.office-shell.office { --office-border: #e5e7ee; height: calc(100dvh - 76px); max-width: 1920px; padding: 20px 24px 24px; display: flex; flex-direction: column; overflow: hidden; }
+.office-toolbar { flex: none; min-height: 54px; margin-bottom: 18px; }
+.office-project { min-width: 0; }
+.office-project .eyebrow { font-size: 9px; letter-spacing: 1.8px; color: #8b86a0; margin-bottom: 7px; }
+.office-project h2 { font-size: 18px; font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.office-controls { flex-shrink: 0; gap: 22px; }
+.office-connection { display: flex; align-items: center; gap: 7px; color: #9e7b49; font-size: 11px; }
+.office-connection i { width: 6px; height: 6px; background: currentColor; border-radius: 50%; }
+.office-connection.online { color: #648b7a; }
+.office-timer { padding-left: 22px; border-left: 1px solid #dfe2e9; }
+.office-timer small { display: block; color: #89909f; font-size: 10px; margin-bottom: 2px; }
+.office-timer .clock { font-size: 21px; letter-spacing: .5px; line-height: 1.1; }
+.office-timer.urgent { color: #ab6243; }
+.office-layout { position: relative; min-height: 0; flex: 1; display: grid; grid-template-columns: 66px minmax(0, 1fr); gap: 12px; }
+.office-layout.sidebar-open { grid-template-columns: 66px 340px minmax(0, 1fr); }
+.office-rail { display: flex; flex-direction: column; align-items: stretch; padding: 16px 6px 10px; background: #eeedf3; border: 1px solid #e5e3ed; border-radius: 14px; gap: 8px; min-height: 0; }
+.office-rail-label { font-size: 9px; text-align: center; color: #91909f; margin-bottom: 7px; letter-spacing: 1px; }
+.office-rail button { position: relative; display: flex; flex-direction: column; align-items: center; gap: 7px; background: transparent; border: 0; color: #858394; padding: 12px 0; border-radius: 10px; min-height: 65px; }
+.office-rail button:hover { background: #e5e2ee; color: #625981; }
+.office-rail button.active { color: #7161c5; background: white; box-shadow: 0 2px 8px #39296f0a; }
+.office-rail button.active::before { content: ''; position: absolute; left: -6px; top: 18px; bottom: 18px; width: 3px; background: #8371d2; border-radius: 0 3px 3px 0; }
+.office-rail svg { width: 20px; height: 20px; }
+.office-rail button span { font-size: 9px; font-weight: 500; white-space: nowrap; }
+.office-rail-bottom { margin-top: auto; text-align: center; font-size: 17px; font-weight: 750; color: #aaa5bb; }
+.office-rail-bottom span { font-size: 10px; }
+.office-panel { min-height: 0; min-width: 0; display: flex; flex-direction: column; background: white; border: 1px solid var(--office-border); border-radius: 14px; overflow: hidden; }
+.office-panel-heading { display: flex; flex: none; justify-content: space-between; align-items: center; padding: 21px 22px 18px; gap: 12px; border-bottom: 1px solid #eeeff4; }
+.office-kicker { display: block; color: #a0a0b2; letter-spacing: 1.5px; font-size: 8px; font-weight: 650; margin-bottom: 7px; }
+.office-panel-heading h3 { font-size: 15px; margin: 0; letter-spacing: -.4px; }
+.office-icon-button { display: grid; place-items: center; border: 1px solid #ebeaf0; border-radius: 7px; background: white; color: #93909f; padding: 6px; }
+.office-icon-button:hover { background: #f5f3fa; color: #6e5ca5; }
+.office-icon-button svg { width: 18px; height: 18px; }
+.office-channel-info { display: flex; align-items: center; gap: 10px; padding: 16px 20px; background: #fcfcfe; border-bottom: 1px solid #f0eff5; }
+.office-channel-symbol { width: 30px; height: 30px; display: grid; place-items: center; font-size: 20px; font-weight: 500; border-radius: 8px; background: #f0edf8; color: #9689bb; }
+.office-channel-info strong { display: block; font-size: 11px; color: #626374; font-weight: 550; }
+.office-channel-info small { display: block; font-size: 10px; color: #a0a0ae; margin-top: 4px; }
+.office-message-list.messages { flex: 1; min-height: 0; max-height: none; padding: 22px 20px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #dedce9 transparent; }
+.office-message { margin-bottom: 22px; }
+.office-message > small { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; color: #747082; line-height: 1.6; font-size: 10px; margin-bottom: 7px; }
+.office-message small time { color: #aaa7b4; font-size: 9px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.office-message.message p { background: #f5f6f9; color: #50566b; font-size: 12px; line-height: 1.85; padding: 13px 14px; }
+.office-message.message.own p { background: #f0edfa; color: #635483; }
+.office-message.announcement p { background: #f8f7fc; border: 1px solid #eeebf5; }
+.office-message.announcement > small { color: #8171a8; }
+.office-chat-empty { display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; min-height: 190px; height: 100%; }
+.office-chat-empty > span { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: #f3f0fa; color: #a094c3; font-size: 23px; margin-bottom: 16px; }
+.office-chat-empty h4 { font-size: 12px; font-weight: 550; color: #787184; margin: 0 0 9px; }
+.office-chat-empty p { font-size: 11px; color: #a29bac; line-height: 1.9; margin: 0; }
+.assistant-empty button { border: 1px solid #e9e5f1; background: white; padding: 10px 12px; color: #8d7ba9; border-radius: 8px; margin-top: 10px; font-size: 10px; width: 100%; text-align: left; }
+.assistant-empty button:first-of-type { margin-top: 24px; }
+.office-assistant-note { margin: 0; padding: 15px 20px; color: #9690a4; background: #fcfbfe; font-size: 11px; line-height: 1.9; border-bottom: 1px solid #f0edf7; }
+.office-composer { flex: none; padding: 14px; border-top: 1px solid #ecebf2; background: #fff; }
+.office-recipient { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; color: #9690a1; font-size: 10px; }
+.office-recipient select { margin: 0; padding: 6px 9px; font-size: 11px; border-color: #eeecf3; flex: 1; min-width: 0; background: #fcfbfe; }
+.office-composer form { border: 1px solid #e4e1ed; border-radius: 10px; overflow: hidden; background: #fdfcff; }
+.office-composer form:focus-within { border-color: #a99bcf; box-shadow: 0 0 0 2px #f5f1fc; }
+.office-composer textarea { border: 0; background: transparent; min-height: 74px; max-height: 160px; resize: vertical; margin: 0; padding: 12px; border-radius: 0; font-size: 12px; }
+.office-composer textarea:focus { outline: none; }
+.office-composer-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 9px 9px 12px; }
+.office-composer-footer small { color: #aaa3b5; font-size: 9px; }
+.office-composer-footer button { padding: 7px 11px; font-size: 10px; border-radius: 6px; }
+.office-composer-footer button span { margin-left: 7px; font-size: 13px; }
+.office-editor .office-panel-heading { padding: 21px 28px 18px; }
+.office-save-status { color: #91a096; font-size: 10px; text-align: right; }
+.office-save-status.warning { color: #ae744e; }
+.office-save-status > span { margin-right: 3px; }
+.office-editor-tabs { display: flex; flex: none; padding: 0 28px; gap: 28px; border-bottom: 1px solid #eceef3; }
+.office-editor-tabs button { display: flex; align-items: center; gap: 7px; padding: 15px 0 13px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #9b97a6; font-size: 12px; }
+.office-editor-tabs button.active { border-bottom-color: #8b78c8; color: #74609e; font-weight: 600; }
+.office-editor-tabs button span { background: #f2f0f6; color: #9c91b2; border-radius: 4px; padding: 1px 5px; font-size: 9px; }
+.office-editor-content.work-content { flex: 1; min-height: 0; max-height: none; overflow-y: auto; padding: 24px 34px 40px; scrollbar-width: thin; scrollbar-color: #dedce9 transparent; }
+.office-brief { border: 1px solid #eae7f1; background: #fcfbfe; border-radius: 9px; margin-bottom: 28px; font-size: 11px; }
+.office-brief summary { cursor: pointer; color: #83739e; padding: 12px 15px; }
+.office-brief summary span { color: #aaa1ba; font-size: 10px; margin-left: 10px; }
+.office-brief p { margin: 0; padding: 2px 15px 16px; color: #8c8499; font-size: 12px; }
+.office-document-intro { margin-bottom: 30px; }
+.office-document-intro .office-kicker { margin-bottom: 10px; }
+.office-document-intro h3 { font-size: 19px; font-weight: 600; letter-spacing: -.6px; color: #42465b; margin-bottom: 9px; }
+.office-document-intro p { color: #a09baa; font-size: 11px; margin: 0; }
+.office-document-section { margin-bottom: 30px; }
+.office-document-title { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.office-section-number { color: #b0a5c6; font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.office-document-title label { margin: 0; color: #535268; font-size: 13px; font-weight: 600; }
+.office-document-title .badge { margin-left: auto; font-size: 9px; padding: 3px 7px; background: #faf9fc; color: #a499b7; border-color: #eeeaf5; }
+.office-document-section textarea { min-height: 210px; padding: 19px 20px; font-size: 13px; line-height: 2; margin: 0; border-color: #e8e5ee; background: #fff; }
+.office-document-section textarea::placeholder { color: #c1bacb; font-size: 12px; }
+.colleague-section textarea { background: #faf9fc; color: #9c95a6; }
+.office-editor .task-row { padding: 20px 0; }
+.office-editor .task-row strong { color: #666174; font-size: 12px; }
+.office-editor .task-row small { color: #a8a0b3; font-size: 10px; }
+.office-editor .task-row select { margin: 0; }
+.office-editor .resource-button { display: flex; justify-content: space-between; gap: 12px; align-items: center; background: white; padding: 16px; font-size: 12px; border-color: #eae5f0; color: #8b7c9e; }
+.office-editor .resource-button span:last-child { margin-left: auto; color: #bab0c8; }
+.office-editor .resource-selected { border-color: #b9a7d3; background: #fbf9fe; }
+.office-resource-content { padding: 26px; background: #fcfbfe; border: 1px solid #ede7f4; border-radius: 10px; margin-top: 22px; }
+.office-resource-content h3 { color: #6b5b81; font-size: 15px; }
+.office-resource-content p { font-size: 13px; color: #7d728b; line-height: 2; margin-bottom: 0; }
+.office-confirm, .office-assignment { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; background: #f8f6fd; border: 1px solid #e7e0f2; border-radius: 10px; padding: 15px 20px; margin-bottom: 14px; font-size: 12px; color: #75658c; }
+.office-confirm p { margin: 5px 0 0; font-size: 11px; }
+.office-confirm > div:last-child, .office-assignment > div { display: flex; gap: 8px; flex-shrink: 0; }
+.office-assignment summary { cursor: pointer; }
+.office-sidebar-scrim { display: none; }
+@media (min-width: 1500px) { .office-layout.sidebar-open { grid-template-columns: 68px 380px minmax(0, 1fr); } .office-editor-content.work-content { padding-left: 60px; padding-right: 60px; } }
+@media (max-width: 1100px) and (min-width: 641px) { .office-layout.sidebar-open { grid-template-columns: 56px 280px minmax(0, 1fr); } .office-editor-content.work-content { padding: 22px; } .office-document-title .badge { margin-left: 24px; } }
+@media (max-width: 640px) {
+  .office-layout.sidebar-open, .office-layout { grid-template-columns: 56px minmax(0, 1fr); gap: 10px; }
+  .office-conversation { position: absolute; z-index: 4; left: 66px; top: 0; bottom: 0; width: min(340px, calc(100% - 66px)); box-shadow: 12px 0 30px #3124441c; }
+  .office-sidebar-scrim { display: block; position: absolute; inset: 0 0 0 66px; z-index: 3; background: #30204022; border: 0; border-radius: 14px; }
+  .office-controls { gap: 14px; }
+  .office-connection { font-size: 10px; }
+  .office-timer { padding-left: 14px; }
+  .office-project h2 { max-width: 35vw; font-size: 16px; }
+  .office-rail button span { font-size: 8px; }
+}
+@media (max-width: 720px) {
+  .office-shell.office { height: calc(100dvh - 66px); padding: 14px 10px 12px; }
+  .office-toolbar.office-heading { flex-direction: row; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .office-project h2 { max-width: 31vw; font-size: 14px; }
+  .office-project .eyebrow { font-size: 7px; letter-spacing: .8px; }
+  .office-controls { width: auto; gap: 12px; }
+  .office-connection { display: none; }
+  .office-timer { border: 0; padding: 0; }
+  .office-timer .clock { font-size: 18px; }
+  .office-controls .primary { font-size: 11px; padding: 10px 12px; }
+  .office-panel-heading, .office-editor .office-panel-heading { padding: 17px; }
+  .office-save-status { font-size: 9px; max-width: 115px; }
+  .office-editor-tabs { padding: 0 17px; gap: 20px; }
+  .office-editor-tabs button { font-size: 11px; }
+  .office-editor-content.work-content { padding: 20px 18px 28px; }
+  .office-document-intro h3 { font-size: 16px; line-height: 1.7; }
+  .office-document-title .badge { margin-left: 24px; }
+  .office-document-section textarea { min-height: 190px; padding: 15px; }
+  .office-confirm, .office-assignment { flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px; }
+}
+
+/* Slack-inspired palette. Keep the writing surface white and high contrast. */
+.office-shell.office { --office-border: #dedbdf; --office-plum: #4a154b; --office-sidebar: #5b2b5e; --office-green: #007a5a; background: #f5f3f6; color: #1d1c1d; }
+.office-project .eyebrow { color: #79547f; }
+.office-project h2, .office-timer .clock { color: #1d1c1d; }
+.office-timer.urgent .clock { color: #ad452f; }
+.office-timer { border-left-color: #d8d2da; }
+.office-timer small { color: #69636c; }
+.office-connection.online { color: #007a5a; }
+.office-shell .primary { background: var(--office-green); color: #fff; }
+.office-shell .primary:hover:not(:disabled) { background: #00694d; }
+.office-shell .secondary { background: #eee9ef; color: #4a154b; }
+.office-shell button:focus-visible, .office-shell a:focus-visible { outline-color: #b675bf; }
+.office-rail { background: #3f0e40; border-color: #3f0e40; }
+.office-rail-label { color: #cfacd3; }
+.office-rail button { color: #e8d4eb; }
+.office-rail button:hover { background: #663168; color: #fff; }
+.office-rail button.active { color: #4a154b; background: #f9edff; box-shadow: none; }
+.office-rail button.active::before { background: #e7b8ee; }
+.office-rail-bottom { color: #d1a9d5; }
+.office-conversation { background: var(--office-sidebar); border-color: #5b2b5e; }
+.office-conversation .office-panel-heading { background: #552458; border-bottom-color: #774a7b; }
+.office-conversation .office-kicker { color: #dbc0df; }
+.office-conversation .office-panel-heading h3 { color: #fff; }
+.office-conversation .office-icon-button { background: #6c3d70; border-color: #835688; color: #f2e4f4; }
+.office-conversation .office-icon-button:hover { background: #805184; color: #fff; }
+.office-channel-info { background: #603064; border-bottom-color: #754679; }
+.office-channel-symbol { background: #7a4c7e; color: #fff; }
+.office-channel-info strong { color: #fff; }
+.office-channel-info small { color: #e3cce7; }
+.office-conversation .office-message-list { scrollbar-color: #99739d transparent; }
+.office-message > small { color: #f3e5f5; }
+.office-message small time { color: #d5b7da; }
+.office-message.message p { background: #6e4072; color: #fff; }
+.office-message.message.own p { background: #f9edff; color: #3f1745; }
+.office-message.announcement p { background: #653469; border-color: #916195; }
+.office-message.announcement > small { color: #fff; }
+.office-chat-empty > span { background: #7a4b7e; color: #f8e9fc; }
+.office-chat-empty h4 { color: #fff; }
+.office-chat-empty p { color: #e1c9e6; }
+.assistant-empty button { background: #6c3c70; border-color: #97649c; color: #fff; }
+.assistant-empty button:hover { background: #805084; }
+.office-assistant-note { background: #603064; color: #ebd8ef; border-bottom-color: #774a7b; }
+.office-composer { background: #552458; border-top-color: #7d5081; }
+.office-recipient { color: #ebd8ef; }
+.office-recipient select { background: #6c3c70; border-color: #98689d; color: #fff; }
+.office-composer form { background: #fff; border-color: #d9c9dd; }
+.office-composer form:focus-within { border-color: #c58bce; box-shadow: 0 0 0 2px #a865b355; }
+.office-composer textarea { color: #1d1c1d; }
+.office-composer textarea::placeholder { color: #746d78; }
+.office-composer-footer small { color: #746d78; }
+.office-conversation .text-button { color: #f2d4fa; }
+.office-conversation .notice { background: #f9edff; color: #542257; }
+.office-editor .office-kicker { color: #75627b; }
+.office-editor .office-panel-heading h3 { color: #1d1c1d; }
+.office-save-status { color: #48745f; }
+.office-save-status.warning { color: #a55a32; }
+.office-editor-tabs { border-bottom-color: #dedbdf; }
+.office-editor-tabs button { color: #69636c; }
+.office-editor-tabs button.active { color: #611f69; border-bottom-color: #611f69; }
+.office-editor-tabs button span { background: #f3e8f5; color: #611f69; }
+.office-brief { background: #faf7fb; border-color: #e7dce9; }
+.office-brief summary { color: #611f69; }
+.office-brief summary span, .office-brief p { color: #75657b; }
+.office-document-intro h3, .office-document-title label { color: #1d1c1d; }
+.office-document-intro p { color: #716b75; }
+.office-section-number { color: #8f6e97; }
+.office-document-title .badge { background: #f6edf8; color: #714778; border-color: #ebdeee; }
+.office-document-section textarea { color: #1d1c1d; border-color: #d6d0d9; }
+.office-document-section textarea:focus { outline-color: #a25aab; }
+.office-document-section textarea::placeholder { color: #928a96; }
+.colleague-section textarea { background: #f8f6f9; color: #69616f; }
+.office-editor .task-row strong { color: #1d1c1d; }
+.office-editor .task-row small { color: #716b75; }
+.office-editor .resource-button { border-color: #e1d4e5; color: #611f69; }
+.office-editor .resource-selected { border-color: #9b5ba5; background: #faf3fc; }
+.office-resource-content { background: #faf7fb; border-color: #e7dce9; }
+.office-resource-content h3 { color: #4a154b; }
+.office-resource-content p { color: #49414e; }
+.office-confirm, .office-assignment { background: #faf3fc; border-color: #e2cee7; color: #542257; }

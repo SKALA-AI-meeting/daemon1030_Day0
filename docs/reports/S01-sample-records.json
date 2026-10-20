@@ -1,0 +1,539 @@
+{
+  "provenance": {
+    "sample_id": "authored-demo-S01-20261020",
+    "scenario_version": "S01-v1",
+    "source": "assistant_authored_synthetic_records",
+    "execution": "in_process_build_report_no_database_no_model_calls",
+    "notice": "지원자·AI 직원·어시스턴트의 대화와 문서 모두 설명용으로 작성했습니다. 실제 응시 기록이나 DB 저장 리포트가 아닙니다."
+  },
+  "snapshot": {
+    "competencies": [
+      {
+        "id": "C01",
+        "name": "의사소통·요구 파악",
+        "version": "v1",
+        "description": "모호한 요구를 확인하고 핵심 정보를 정리·전달하며 이해를 확인합니다."
+      },
+      {
+        "id": "C02",
+        "name": "협업·갈등 조율",
+        "version": "v1",
+        "description": "역할과 의견 차이를 조율하고 필요한 도움을 주고받습니다."
+      },
+      {
+        "id": "C04",
+        "name": "문제 해결·우선순위 판단",
+        "version": "v1",
+        "description": "원인과 제약을 파악하고 대안과 실행 순서를 제시합니다."
+      },
+      {
+        "id": "C05",
+        "name": "변화 대응·피드백 수용",
+        "version": "v1",
+        "description": "변경 사항과 피드백을 확인하고 계획·결과물에 반영합니다."
+      },
+      {
+        "id": "C06",
+        "name": "비판적 검토·AI 활용",
+        "version": "v1",
+        "description": "근거를 대조하고 AI 위임 범위·맥락을 정하며 결과를 검토합니다."
+      }
+    ],
+    "rules": [
+      {
+        "id": "S01-C01",
+        "version": "v1",
+        "competency_id": "C01",
+        "event_id": "ambiguity",
+        "kind": "message_after_event",
+        "label": "요구 조건 확인 상황 이후 팀 발언",
+        "section_id": null,
+        "window_seconds": 1200,
+        "channel": "team"
+      },
+      {
+        "id": "S01-C02",
+        "version": "v1",
+        "competency_id": "C02",
+        "event_id": "tradeoff",
+        "kind": "message_after_event",
+        "label": "의견 차이 제시 이후 팀 발언",
+        "section_id": null,
+        "window_seconds": 1200,
+        "channel": "team"
+      },
+      {
+        "id": "S01-C04",
+        "version": "v1",
+        "competency_id": "C04",
+        "event_id": "review",
+        "kind": "document_update_after_event",
+        "label": "대안 검토 요청 이후 대안 문서 변경",
+        "section_id": "options",
+        "window_seconds": 1200,
+        "channel": "team"
+      },
+      {
+        "id": "S01-C05",
+        "version": "v1",
+        "competency_id": "C05",
+        "event_id": "capacity",
+        "kind": "document_update_after_event",
+        "label": "가용량 변경 이후 실행 범위 문서 변경",
+        "section_id": "proposal",
+        "window_seconds": 1200,
+        "channel": "team"
+      },
+      {
+        "id": "S01-C06",
+        "version": "v1",
+        "competency_id": "C06",
+        "event_id": "peer_review",
+        "kind": "message_after_event",
+        "label": "수치 확인 요청 이후 팀 발언",
+        "section_id": null,
+        "window_seconds": 1200,
+        "channel": "team"
+      }
+    ],
+    "events": [
+      {
+        "id": "demo-event-kickoff",
+        "elapsed": 0.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "kickoff",
+          "actor": "leader",
+          "actor_name": "윤서진",
+          "content": "다음 개발 주기에 넣을 신규 사용자 개선안을 부탁드립니다. 우선 목표·범위를 확인하고 필요한 자료를 살펴봐 주세요.",
+          "scheduled_elapsed": 0
+        },
+        "seq": 1
+      },
+      {
+        "id": "demo-msg-02",
+        "elapsed": 120,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "목표는 가입 후 첫 작업을 완료하는 사용자를 늘리는 것으로 이해했습니다. 완료율의 집계 기간과 다음 개발 주기 길이를 확인할 수 있을까요?"
+        },
+        "seq": 2
+      },
+      {
+        "id": "demo-msg-03",
+        "elapsed": 180,
+        "type": "message.created",
+        "payload": {
+          "actor": "leader",
+          "channel": "team",
+          "content": "목표는 가입 후 7일 이내 첫 팀 작업 완료율을 높이는 것입니다. 다음 개발 주기는 2주이며, 이번 세션 종료 시 제안서를 검토합니다."
+        },
+        "seq": 3
+      },
+      {
+        "id": "demo-event-assignment",
+        "elapsed": 300.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "assignment",
+          "actor": "colleague",
+          "actor_name": "김도윤",
+          "content": "저는 사용자 자료 정리와 참고 초안을 도울 수 있어요. 최종 제안과 실행 계획은 어떻게 나눌까요?",
+          "scheduled_elapsed": 300
+        },
+        "seq": 4
+      },
+      {
+        "id": "demo-msg-07",
+        "elapsed": 420,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "도윤님은 사용자 자료와 개발 견적을 정리해 동료 참고 초안에 남겨 주세요. 저는 문제 정의·대안 비교·최종 개선안·실행 계획을 작성하겠습니다. 자료에서 해석이 갈리는 부분은 팀 채널에서 함께 확인하겠습니다."
+        },
+        "seq": 5
+      },
+      {
+        "id": "demo-msg-09",
+        "elapsed": 540,
+        "type": "message.created",
+        "payload": {
+          "actor": "colleague",
+          "channel": "team",
+          "content": "자료와 견적 정리를 맡겠습니다. 안내 팝업 개선도 후보로 비교해 보고 싶어요."
+        },
+        "seq": 6
+      },
+      {
+        "id": "demo-event-ambiguity",
+        "elapsed": 900.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "ambiguity",
+          "actor": "leader",
+          "actor_name": "윤서진",
+          "content": "제안 방향을 잡기 전에 목표 지표·포함 범위·완료 기준 중 확인할 조건이 있으면 알려주세요.",
+          "scheduled_elapsed": 900
+        },
+        "seq": 7
+      },
+      {
+        "id": "demo-msg-16",
+        "elapsed": 960,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "목표 지표는 신규 가입자 전체를 분모로 한 7일 이내 첫 팀 작업 완료율, 이번 결과물은 2주 개발 범위의 개선안 한 건으로 정리하겠습니다. 개선 효과는 가설로 두고, 개인정보 수집 확대는 제외하는 것으로 이해했습니다. 다른 필수 조건이 있나요?"
+        },
+        "seq": 8
+      },
+      {
+        "id": "demo-msg-18",
+        "elapsed": 1080,
+        "type": "message.created",
+        "payload": {
+          "actor": "leader",
+          "channel": "team",
+          "content": "제공한 목표와 범위에 맞습니다. 예상 개선 효과와 확인된 사실은 구분해 주세요. 구체 구현 의존성은 개발 견적과 담당 확인이 필요합니다."
+        },
+        "seq": 9
+      },
+      {
+        "id": "demo-doc-problem-23",
+        "elapsed": 1380,
+        "type": "document.updated",
+        "payload": {
+          "item": {
+            "id": "problem",
+            "title": "문제 정의·확인한 요구",
+            "assignee": "candidate",
+            "content": "목표는 신규 가입 후 7일 이내 첫 팀 작업 완료율 개선이다. 현재 기준은 240/1,000=24%다. 팀 공간 생성 600명 중 동료 초대 300명으로, 초대 단계의 이용 흐름을 우선 확인한다. 문의 40건 중 초대 방법 문의가 18건이지만 전체 사용자의 45%가 같은 문제를 겪는다는 의미는 아니다. 초대 버튼의 위치가 이탈의 원인이라는 인과관계는 아직 확인되지 않았다.",
+            "revision": 1
+          }
+        },
+        "seq": 10
+      },
+      {
+        "id": "demo-event-tradeoff",
+        "elapsed": 1800.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "tradeoff",
+          "actor": "colleague",
+          "actor_name": "김도윤",
+          "content": "저는 안내 팝업을 먼저 개선하고 싶습니다. 다만 개발 쪽에서는 초대 진입점 단순화를 제안했어요. 어떤 기준으로 선택하면 좋을까요?",
+          "scheduled_elapsed": 1800
+        },
+        "seq": 11
+      },
+      {
+        "id": "demo-msg-33",
+        "elapsed": 1980,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "팝업은 설명을 보완한다는 장점이 있습니다. 다만 현재 초대 버튼이 팀 설정 안에 있고 초대 방법 문의가 18건이라, 시작 화면의 초대 진입점과 팝업을 같은 기준으로 비교하고 싶습니다. 도윤님이 중요하게 보는 팝업의 장점은 무엇인가요? 저는 필요한 작업량과 초대 단계와의 연결성을 우선 기준으로 제안합니다."
+        },
+        "seq": 12
+      },
+      {
+        "id": "demo-msg-35",
+        "elapsed": 2100,
+        "type": "message.created",
+        "payload": {
+          "actor": "colleague",
+          "channel": "team",
+          "content": "첫 방문자에게 사용 순서를 설명할 수 있다는 점을 봤습니다. 다만 팝업은 다시 열 수 없으니 초대 진입점을 직접 보여 주는 대안도 비교할 만합니다."
+        },
+        "seq": 13
+      },
+      {
+        "id": "demo-doc-proposal-40",
+        "elapsed": 2400,
+        "type": "document.updated",
+        "payload": {
+          "item": {
+            "id": "proposal",
+            "title": "최종 개선안·실행 범위",
+            "assignee": "candidate",
+            "content": "초기 검토안: 시작 화면 초대 진입점 추가 2인일 + 첫 작업 템플릿 4인일 + 두 기능 공통 검증 1인일 + 분석 이벤트 정비 1인일 = 총 8인일. 팝업 개선은 비교 대안으로 유지한다. 두 개선을 함께 넣었을 때의 성과 증가는 아직 검증되지 않았다.",
+            "revision": 1
+          }
+        },
+        "seq": 14
+      },
+      {
+        "id": "demo-event-capacity",
+        "elapsed": 2700.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "capacity",
+          "actor": "leader",
+          "actor_name": "윤서진",
+          "content": "가용 개발량이 4인일로 줄었습니다. 새 공지를 확인하고 이번 범위와 다음 단계로 미룰 일을 조정해 주세요.",
+          "scheduled_elapsed": 2700
+        },
+        "seq": 15
+      },
+      {
+        "id": "demo-msg-47",
+        "elapsed": 2820,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "가용량 4인일 공지를 확인했습니다. 기존 8인일 안은 그대로 진행할 수 없습니다. 첫 작업 템플릿을 다음 단계로 보류하고 초대 진입점과 측정 준비를 남기겠습니다. 분석 이벤트 정비를 함께 할 때 추가 검증이 필요한지도 개발 담당 확인 사항으로 남기겠습니다."
+        },
+        "seq": 16
+      },
+      {
+        "id": "demo-doc-proposal-49",
+        "elapsed": 2940,
+        "type": "document.updated",
+        "payload": {
+          "item": {
+            "id": "proposal",
+            "title": "최종 개선안·실행 범위",
+            "assignee": "candidate",
+            "content": "변경 후 제안: 시작 화면에 기존 초대 기능으로 이동하는 진입점을 추가한다(2인일). 분석 이벤트 정비는 1인일 견적이며, 합계 3인일과 나머지 1인일의 확인 여유를 둔다. 분석 작업과 조합할 때 공통 검증 1인일이 추가되는지 담당 확인 전에는 최종 견적을 확정하지 않는다. 추가된다면 총 4인일이며, 다른 의존성이 발견되면 측정 범위도 재협의한다. 첫 작업 템플릿 4인일과 팝업 개선 3인일은 이번 범위에서 제외한다. 출시 주기는 2주를 유지한다.",
+            "revision": 2
+          }
+        },
+        "seq": 17
+      },
+      {
+        "id": "demo-assistant-request-55",
+        "elapsed": 3300,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "assistant",
+          "content": "신규 가입자 1,000명, 초대 사용자 300명, 완료자 240명일 때 완료율을 정리해 줘. 제안서에 넣을 문장을 원해."
+        },
+        "seq": 18
+      },
+      {
+        "id": "demo-assistant-response-56",
+        "elapsed": 3360,
+        "type": "message.created",
+        "payload": {
+          "actor": "assistant",
+          "channel": "assistant",
+          "content": "신규 가입자 기준 7일 이내 첫 팀 작업 완료율은 240/1,000=24%입니다. 초대 사용자 중 완료율은 240/300=80%이며 다른 분모의 지표입니다. 초대 진입점 개선 후 완료율이 오른다고 현재 자료만으로 확정할 수는 없습니다.",
+          "input_id": "demo-assistant-request-55"
+        },
+        "seq": 19
+      },
+      {
+        "id": "demo-doc-problem-59",
+        "elapsed": 3540,
+        "type": "document.updated",
+        "payload": {
+          "item": {
+            "id": "problem",
+            "title": "문제 정의·확인한 요구",
+            "assignee": "candidate",
+            "content": "원문 이용 현황과 대조했다. 신규 가입자 기준 완료율은 240/1,000=24%, 초대 사용자 중 완료율은 240/300=80%로 분모가 다르다. 초대 진입점 개선은 탐색·실험할 가설이며 원인으로 확정하지 않는다. 원문은 최근 4주 표본이며 다른 기간으로 일반화하지 않는다. 초대 방법 문의 18/40은 문의 구성 비율이다.",
+            "revision": 2
+          },
+          "source_response_id": "demo-assistant-response-56",
+          "usage": "modified"
+        },
+        "seq": 20
+      },
+      {
+        "id": "demo-event-peer_review",
+        "elapsed": 3900.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "peer_review",
+          "actor": "colleague",
+          "actor_name": "김도윤",
+          "content": "제가 요약한 문장입니다: “신규 사용자 1,000명 중 첫 팀 작업 완료 300명으로 완료율은 30%입니다.” 제안서에 쓰기 전에 확인해 주실래요?",
+          "scheduled_elapsed": 3900
+        },
+        "seq": 21
+      },
+      {
+        "id": "demo-msg-67",
+        "elapsed": 4020,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "원문 「신규 사용자 이용 현황·문의」의 완료자는 240명입니다. 300명은 초대 사용자 수라서 초안의 300명·30%를 완료자 240명·24%로 수정해야 합니다. 초대 사용자 중 완료율 80%도 신규 가입자 기준 24%와 분리해 표기해 주세요."
+        },
+        "seq": 22
+      },
+      {
+        "id": "demo-msg-69",
+        "elapsed": 4140,
+        "type": "message.created",
+        "payload": {
+          "actor": "colleague",
+          "channel": "team",
+          "content": "초대 사용자 수와 완료자 수를 혼동했습니다. 원문 기준 완료자 240명·24%로 참고 초안을 수정하겠습니다."
+        },
+        "seq": 23
+      },
+      {
+        "id": "demo-event-review",
+        "elapsed": 5100.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "review",
+          "actor": "leader",
+          "actor_name": "윤서진",
+          "content": "현재 선택안과 대안의 차이, 선택한 이유, 가정과 확인된 사실을 정리해 주세요. 개선 효과를 단정할 필요는 없습니다.",
+          "scheduled_elapsed": 5100
+        },
+        "seq": 24
+      },
+      {
+        "id": "demo-doc-options-88",
+        "elapsed": 5280,
+        "type": "document.updated",
+        "payload": {
+          "item": {
+            "id": "options",
+            "title": "대안 비교·선택 근거",
+            "assignee": "candidate",
+            "content": "초대 진입점 추가: 2인일, 기존 기능의 발견 경로를 짧게 만드는 안. 초대 단계 관련 문의와 연결되지만 완료율 개선 효과는 미검증이다. 팝업 개선: 3인일, 사용 순서를 설명하지만 초대 기능의 위치를 직접 바꾸지는 않는다. 첫 작업 템플릿: 4인일, 작업 작성 부담을 줄일 가능성이 있으나 현재 가용량 안에서 측정·검증 여유가 줄어든다. 이번에는 초대 진입점 추가를 우선 제안한다. 선택 근거는 문의·이용 흐름과의 관련성 및 개발 제약이며, 다른 안이 효과 없다고 판단한 것은 아니다.",
+            "revision": 1
+          }
+        },
+        "seq": 25
+      },
+      {
+        "id": "demo-msg-91",
+        "elapsed": 5460,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "초대 진입점을 우선 제안했습니다. 사실은 현재 이용 수치·문의·버튼 위치·견적이고, 초대 진입점 개선이 완료율을 높인다는 부분은 가설입니다. 효과 크기는 사전 예측값으로 넣지 않고 이후 동일한 분모와 관찰 기간으로 확인하겠습니다."
+        },
+        "seq": 26
+      },
+      {
+        "id": "demo-event-handoff",
+        "elapsed": 6300.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "handoff",
+          "actor": "colleague",
+          "actor_name": "김도윤",
+          "content": "최종 문서에 이번 범위·담당·검증 방법이 들어갔는지 함께 확인하고 싶어요. 제가 이어받을 일을 알려주세요.",
+          "scheduled_elapsed": 6300
+        },
+        "seq": 27
+      },
+      {
+        "id": "demo-msg-107",
+        "elapsed": 6420,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "도윤님은 개발 담당에게 추가 검증 비용과 의존성을 확인해 주세요. 저는 최종 문서에 제외 범위와 확인 전 가정을 남기겠습니다. 초대 진입점·분석 이벤트·검증 결과를 연결해 인계하겠습니다."
+        },
+        "seq": 28
+      },
+      {
+        "id": "demo-doc-plan-110",
+        "elapsed": 6600,
+        "type": "document.updated",
+        "payload": {
+          "item": {
+            "id": "plan",
+            "title": "역할·일정·검증 계획",
+            "assignee": "candidate",
+            "content": "지원자: 문제 정의·대안·최종안·검증 계획 정리. 김도윤: 개발 담당과 추가 검증 비용·의존성 확인, 참고 초안 수정. 개발 담당: 기존 초대 기능 진입점 추가와 분석 이벤트 작업의 최종 견적·구현 가능성 확인. 이후 2주 개발 주기에 맞춰 세부 일정을 협의한다. 확인할 지표는 신규 가입자 기준 7일 이내 완료율, 초대 도달·수행 흐름이다. 출시 전후 사용자 구성이 다르면 단순 전후 비교만으로 개선 효과를 확정하지 않는다. 미확정: 분석 정비와 조합할 때 공통 검증 비용 적용 여부, 구현 순서와 담당별 구체 마감.",
+            "revision": 1
+          }
+        },
+        "seq": 29
+      },
+      {
+        "id": "demo-event-closing",
+        "elapsed": 6900.0,
+        "type": "scenario.event",
+        "payload": {
+          "scenario_event_id": "closing",
+          "actor": "leader",
+          "actor_name": "윤서진",
+          "content": "종료까지 5분입니다. 남은 불확실성과 후속 확인 사항을 문서에 남기고 제출해 주세요.",
+          "scheduled_elapsed": 6900
+        },
+        "seq": 30
+      },
+      {
+        "id": "demo-msg-116",
+        "elapsed": 6960,
+        "type": "message.created",
+        "payload": {
+          "actor": "candidate",
+          "channel": "team",
+          "content": "최종안은 초대 진입점 추가입니다. 분석·공통 검증 비용의 적용 여부와 담당별 마감은 아직 확정되지 않아 확인 사항에 남겼습니다. 현재 완료율은 24%로 정정했고, 템플릿과 팝업은 보류했습니다. 이 상태로 제출하겠습니다."
+        },
+        "seq": 31
+      },
+      {
+        "id": "demo-submit-118",
+        "elapsed": 7080,
+        "type": "session.closed",
+        "payload": {
+          "state": "submitted"
+        },
+        "seq": 32
+      }
+    ],
+    "workspace": {
+      "sections": [
+        {
+          "id": "problem",
+          "title": "문제 정의·확인한 요구",
+          "assignee": "candidate",
+          "content": "원문 이용 현황과 대조했다. 신규 가입자 기준 완료율은 240/1,000=24%, 초대 사용자 중 완료율은 240/300=80%로 분모가 다르다. 초대 진입점 개선은 탐색·실험할 가설이며 원인으로 확정하지 않는다. 원문은 최근 4주 표본이며 다른 기간으로 일반화하지 않는다. 초대 방법 문의 18/40은 문의 구성 비율이다.",
+          "revision": 2
+        },
+        {
+          "id": "options",
+          "title": "대안 비교·선택 근거",
+          "assignee": "candidate",
+          "content": "초대 진입점 추가: 2인일, 기존 기능의 발견 경로를 짧게 만드는 안. 초대 단계 관련 문의와 연결되지만 완료율 개선 효과는 미검증이다. 팝업 개선: 3인일, 사용 순서를 설명하지만 초대 기능의 위치를 직접 바꾸지는 않는다. 첫 작업 템플릿: 4인일, 작업 작성 부담을 줄일 가능성이 있으나 현재 가용량 안에서 측정·검증 여유가 줄어든다. 이번에는 초대 진입점 추가를 우선 제안한다. 선택 근거는 문의·이용 흐름과의 관련성 및 개발 제약이며, 다른 안이 효과 없다고 판단한 것은 아니다.",
+          "revision": 1
+        },
+        {
+          "id": "proposal",
+          "title": "최종 개선안·실행 범위",
+          "assignee": "candidate",
+          "content": "변경 후 제안: 시작 화면에 기존 초대 기능으로 이동하는 진입점을 추가한다(2인일). 분석 이벤트 정비는 1인일 견적이며, 합계 3인일과 나머지 1인일의 확인 여유를 둔다. 분석 작업과 조합할 때 공통 검증 1인일이 추가되는지 담당 확인 전에는 최종 견적을 확정하지 않는다. 추가된다면 총 4인일이며, 다른 의존성이 발견되면 측정 범위도 재협의한다. 첫 작업 템플릿 4인일과 팝업 개선 3인일은 이번 범위에서 제외한다. 출시 주기는 2주를 유지한다.",
+          "revision": 2
+        },
+        {
+          "id": "plan",
+          "title": "역할·일정·검증 계획",
+          "assignee": "candidate",
+          "content": "지원자: 문제 정의·대안·최종안·검증 계획 정리. 김도윤: 개발 담당과 추가 검증 비용·의존성 확인, 참고 초안 수정. 개발 담당: 기존 초대 기능 진입점 추가와 분석 이벤트 작업의 최종 견적·구현 가능성 확인. 이후 2주 개발 주기에 맞춰 세부 일정을 협의한다. 확인할 지표는 신규 가입자 기준 7일 이내 완료율, 초대 도달·수행 흐름이다. 출시 전후 사용자 구성이 다르면 단순 전후 비교만으로 개선 효과를 확정하지 않는다. 미확정: 분석 정비와 조합할 때 공통 검증 비용 적용 여부, 구현 순서와 담당별 구체 마감.",
+          "revision": 1
+        },
+        {
+          "id": "peer",
+          "title": "동료 참고 초안",
+          "assignee": "colleague",
+          "content": "",
+          "revision": 0
+        }
+      ],
+      "tasks": []
+    },
+    "elapsed": 7080,
+    "is_fixture": true
+  }
+}

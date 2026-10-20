@@ -1,0 +1,110 @@
+[
+  {
+    "name": "search_company_documents",
+    "description": "현재 기업·평가에서 공개된 승인 문서만 검색합니다. 문서·청크 ID와 근거 본문을 반환합니다.",
+    "inputSchema": {
+      "properties": {
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "top_k": {
+          "default": 4,
+          "title": "Top K",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "search_company_documentsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "search_company_documentsDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "get_company_document",
+    "description": "공개된 회사 문서 원문과 버전을 조회합니다. 비공개 문서의 ID를 직접 알아도 조회할 수 없습니다.",
+    "inputSchema": {
+      "properties": {
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id"
+      ],
+      "title": "get_company_documentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_company_documentDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "stage_company_document",
+    "description": "관리 실행 전용: Gateway의 원문 버전을 검색되지 않는 준비 상태로 저장합니다.",
+    "inputSchema": {
+      "properties": {
+        "source_version_id": {
+          "title": "Source Version Id",
+          "type": "string"
+        },
+        "command_id": {
+          "title": "Command Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_version_id",
+        "command_id"
+      ],
+      "title": "stage_company_documentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "stage_company_documentDictOutput",
+      "type": "object"
+    }
+  },
+  {
+    "name": "index_approved_document",
+    "description": "관리 실행 전용: 실제 관리자 승인 ID와 문서 해시를 확인하고 검색용 벡터를 생성합니다.",
+    "inputSchema": {
+      "properties": {
+        "staged_id": {
+          "title": "Staged Id",
+          "type": "string"
+        },
+        "approval_id": {
+          "title": "Approval Id",
+          "type": "string"
+        },
+        "command_id": {
+          "title": "Command Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "staged_id",
+        "approval_id",
+        "command_id"
+      ],
+      "title": "index_approved_documentArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "index_approved_documentDictOutput",
+      "type": "object"
+    }
+  }
+]

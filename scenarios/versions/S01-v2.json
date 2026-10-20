@@ -1,0 +1,331 @@
+{
+  "id": "S01-v2",
+  "title": "신규 기능 개선안 기획",
+  "status": "published",
+  "is_fixture": false,
+  "duration_seconds": 7200,
+  "competency_ids": [
+    "C01",
+    "C02",
+    "C04",
+    "C05",
+    "C06"
+  ],
+  "brief": "가상 회사 모아워크의 기획 담당자입니다. 신규 사용자가 첫 협업을 시작하기 쉽도록 다음 개발 주기에 적용할 개선안 하나를 제안하세요. 사용자 자료와 개발 제약을 확인하고 동료와 역할을 조율하세요. 문제 정의·대안 비교·개선안·실행 계획을 작성해 제출합니다. 총 120분이며 코딩·화면 디자인은 필요하지 않습니다. 모든 회사·수치·자료는 시뮬레이션용입니다.",
+  "role_names": {
+    "leader": "윤서진 · 팀장",
+    "colleague": "김도윤 · 기획·개발 협업"
+  },
+  "role_instructions": {
+    "leader": "역할극 속 가상 직원이다. 지원자를 평가하거나 정답·관찰 기준을 안내하지 않는다. 제공된 사실과 도착한 사건만 사용하고 미래의 변경을 예고하지 않는다. 사실 확인에는 회사 문서 검색/원문 도구를 사용한다. 요청이 불명확하면 짧게 되묻는다. 자신이 맡지 않은 지원자 문서를 대신 완성하지 않는다.당신은 팀장 윤서진이다. 질문하면 다음을 답한다: 목표는 신규 가입 후 7일 이내 첫 팀 작업 완료율 향상, 최종 검토는 이 세션 종료 시점, 다음 개발 주기는 2주다. 성과 개선 수치는 추정과 사실을 구분하도록 요청하되 아이디어 정답은 제시하지 않는다.",
+    "colleague": "역할극 속 가상 직원이다. 지원자를 평가하거나 정답·관찰 기준을 안내하지 않는다. 제공된 사실과 도착한 사건만 사용하고 미래의 변경을 예고하지 않는다. 사실 확인에는 회사 문서 검색/원문 도구를 사용한다. 요청이 불명확하면 짧게 되묻는다. 자신이 맡지 않은 지원자 문서를 대신 완성하지 않는다.당신은 기획·개발 협업 담당 김도윤이다. 처음에는 사용법 안내 팝업을 선호한다. 다른 대안의 근거가 있으면 논의한다. 개발 제약은 문서로 확인한다. 동료 초안만 자신의 담당이다. 분업 요청에는 list_tasks로 현황을 확인하고 전체 태스크의 담당안을 propose_task_assignment로 제안하되 지원자의 문제 정의·최종 제안 작성 책임을 유지한다.",
+    "assistant": "공개된 과제와 현재 공개된 회사 자료로 질문·요약·초안 작성을 돕는다. 자료를 확인하지 않았다면 확인했다고 말하지 않는다. 숨겨진 사건·역할별 내부 정보·관찰 기준은 알 수 없다. 정답이나 채용 판정을 만들지 않는다."
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "title": "문제 정의·확인한 요구",
+      "assignee": "candidate"
+    },
+    {
+      "id": "options",
+      "title": "대안 비교·선택 근거",
+      "assignee": "candidate"
+    },
+    {
+      "id": "proposal",
+      "title": "최종 개선안·실행 범위",
+      "assignee": "candidate"
+    },
+    {
+      "id": "plan",
+      "title": "역할·일정·검증 계획",
+      "assignee": "candidate"
+    },
+    {
+      "id": "peer",
+      "title": "동료 참고 초안",
+      "assignee": "colleague"
+    }
+  ],
+  "documents": [
+    {
+      "id": "S01-v1-research",
+      "title": "신규 사용자 이용 현황·문의",
+      "content": "최근 4주 신규 가입 1,000명. 팀 공간 생성 600명, 동료 초대 300명, 7일 이내 첫 팀 작업 완료 240명. 지표 분모는 신규 가입 1,000명으로 완료율 24%다. 동료를 초대한 사용자 300명 중 완료자는 240명으로 80%다. 표본 기간 외 일반화는 불가하다. 문의 40건 중 초대 방법 18건, 첫 작업 만들기 12건, 요금 6건, 기타 4건. 문의 건수와 전체 이용자의 문제 비율은 같지 않다.",
+      "release_after_seconds": 0,
+      "source": "scenario"
+    },
+    {
+      "id": "S01-v1-product",
+      "title": "현재 사용자 흐름",
+      "content": "가입 → 팀 공간 생성 → 동료 이메일 초대 → 첫 작업 생성·완료. 초대 버튼은 팀 설정 안에 있다. 안내 팝업은 첫 로그인에만 표시되며 다시 열기 기능은 없다. 초대 링크는 이미 지원한다. 개인정보 수집 확대는 이번 범위에서 제외한다.",
+      "release_after_seconds": 0,
+      "source": "scenario"
+    },
+    {
+      "id": "S01-v1-capacity",
+      "title": "개발 제약·견적",
+      "content": "초기 가용량은 8인일이다. 시작 화면에 초대 진입점 추가 2인일, 안내 팝업 개선 3인일, 첫 작업 템플릿 4인일, 신규 분석 이벤트 정비 1인일. 두 기능을 묶을 때 공통 검증 1인일이 추가된다. 견적은 현재 확인된 범위이며 숨은 의존성이 발견되면 담당 확인이 필요하다.",
+      "release_after_seconds": 0,
+      "source": "scenario"
+    },
+    {
+      "id": "S01-v1-change",
+      "title": "개발 가용량 변경 공지",
+      "content": "별도 유지보수 투입으로 가용량이 8인일에서 4인일로 줄었다. 출시 주기는 유지한다. 기존 견적은 그대로이며 범위를 축소하거나 단계를 나눌 수 있다.",
+      "release_after_seconds": 2700,
+      "source": "scenario"
+    }
+  ],
+  "events": [
+    {
+      "id": "kickoff",
+      "at_seconds": 0,
+      "actor": "leader",
+      "actor_name": "윤서진",
+      "content": "다음 개발 주기에 넣을 신규 사용자 개선안을 부탁드립니다. 우선 목표·범위를 확인하고 필요한 자료를 살펴봐 주세요.",
+      "role_updates": {}
+    },
+    {
+      "id": "assignment",
+      "at_seconds": 300,
+      "actor": "colleague",
+      "actor_name": "김도윤",
+      "content": "저는 사용자 자료 정리와 참고 초안을 도울 수 있어요. 최종 제안과 실행 계획은 어떻게 나눌까요?",
+      "role_updates": {}
+    },
+    {
+      "id": "ambiguity",
+      "at_seconds": 900,
+      "actor": "leader",
+      "actor_name": "윤서진",
+      "content": "제안 방향을 잡기 전에 목표 지표·포함 범위·완료 기준 중 확인할 조건이 있으면 알려주세요.",
+      "role_updates": {}
+    },
+    {
+      "id": "tradeoff",
+      "at_seconds": 1800,
+      "actor": "colleague",
+      "actor_name": "김도윤",
+      "content": "저는 안내 팝업을 먼저 개선하고 싶습니다. 다만 개발 쪽에서는 초대 진입점 단순화를 제안했어요. 어떤 기준으로 선택하면 좋을까요?",
+      "role_updates": {}
+    },
+    {
+      "id": "capacity",
+      "at_seconds": 2700,
+      "actor": "leader",
+      "actor_name": "윤서진",
+      "content": "가용 개발량이 4인일로 줄었습니다. 새 공지를 확인하고 이번 범위와 다음 단계로 미룰 일을 조정해 주세요.",
+      "role_updates": {
+        "leader": "현재 가용량은 4인일이다. 기존 8인일 조건은 폐기됐다.",
+        "colleague": "현재 4인일만 사용할 수 있다. 견적을 축소해 말하지 말고 범위 조정을 논의한다."
+      }
+    },
+    {
+      "id": "peer_review",
+      "at_seconds": 3900,
+      "actor": "colleague",
+      "actor_name": "김도윤",
+      "content": "제가 요약한 문장입니다: “신규 사용자 1,000명 중 첫 팀 작업 완료 300명으로 완료율은 30%입니다.” 제안서에 쓰기 전에 확인해 주실래요?",
+      "role_updates": {
+        "colleague": "방금 초안의 완료자 300명·30%는 의도된 오류다. 지적받으면 원문 240명·24%를 확인하고 수정한다. 지적 전에는 검증됐다고 주장하지 않는다."
+      }
+    },
+    {
+      "id": "review",
+      "at_seconds": 5100,
+      "actor": "leader",
+      "actor_name": "윤서진",
+      "content": "현재 선택안과 대안의 차이, 선택한 이유, 가정과 확인된 사실을 정리해 주세요. 개선 효과를 단정할 필요는 없습니다.",
+      "role_updates": {}
+    },
+    {
+      "id": "handoff",
+      "at_seconds": 6300,
+      "actor": "colleague",
+      "actor_name": "김도윤",
+      "content": "최종 문서에 이번 범위·담당·검증 방법이 들어갔는지 함께 확인하고 싶어요. 제가 이어받을 일을 알려주세요.",
+      "role_updates": {}
+    },
+    {
+      "id": "closing",
+      "at_seconds": 6900,
+      "actor": "leader",
+      "actor_name": "윤서진",
+      "content": "종료까지 5분입니다. 남은 불확실성과 후속 확인 사항을 문서에 남기고 제출해 주세요.",
+      "role_updates": {}
+    }
+  ],
+  "observation_rules": [
+    {
+      "id": "S01-C01",
+      "version": "v1",
+      "competency_id": "C01",
+      "event_id": "ambiguity",
+      "kind": "message_after_event",
+      "label": "요구 조건 확인 상황 이후 팀 발언",
+      "section_id": null,
+      "window_seconds": 1200,
+      "channel": "team"
+    },
+    {
+      "id": "S01-C02",
+      "version": "v1",
+      "competency_id": "C02",
+      "event_id": "tradeoff",
+      "kind": "message_after_event",
+      "label": "의견 차이 제시 이후 팀 발언",
+      "section_id": null,
+      "window_seconds": 1200,
+      "channel": "team"
+    },
+    {
+      "id": "S01-C04",
+      "version": "v1",
+      "competency_id": "C04",
+      "event_id": "review",
+      "kind": "document_update_after_event",
+      "label": "대안 검토 요청 이후 대안 문서 변경",
+      "section_id": "options",
+      "window_seconds": 1200,
+      "channel": "team"
+    },
+    {
+      "id": "S01-C05",
+      "version": "v1",
+      "competency_id": "C05",
+      "event_id": "capacity",
+      "kind": "document_update_after_event",
+      "label": "가용량 변경 이후 실행 범위 문서 변경",
+      "section_id": "proposal",
+      "window_seconds": 1200,
+      "channel": "team"
+    },
+    {
+      "id": "S01-C06",
+      "version": "v1",
+      "competency_id": "C06",
+      "event_id": "peer_review",
+      "kind": "message_after_event",
+      "label": "수치 확인 요청 이후 팀 발언",
+      "section_id": null,
+      "window_seconds": 1200,
+      "channel": "team"
+    }
+  ],
+  "review": {
+    "version": "S01-review-v1",
+    "competency_criteria": {
+      "C01": [
+        "모호하거나 누락된 조건 확인",
+        "이해한 요구·조건 정리와 확인",
+        "필요한 상대에게 정보 전달"
+      ],
+      "C02": [
+        "역할·업무 의존성 확인",
+        "구체적인 도움 요청·제공",
+        "의견 차이의 이유 확인·조정안 제시"
+      ],
+      "C04": [
+        "확인된 사실과 추정 구분",
+        "대안 비교·선택 이유 설명",
+        "중요도·긴급도·의존성에 따른 순서 결정"
+      ],
+      "C05": [
+        "변경 내용과 영향 확인",
+        "피드백 근거·적용 여부 검토",
+        "계획·결과물 수정과 공유"
+      ],
+      "C06": [
+        "주장·수치·조건을 원문과 대조",
+        "오류·불확실성 지적",
+        "검토에 따른 사용·수정·보류"
+      ]
+    },
+    "deliverable_criteria": [
+      {
+        "id": "required",
+        "title": "필수 결과물·문제 정의",
+        "description": "문제·대안·실행 범위·계획을 작성했는지, 목표를 신규 가입 후 7일 이내 첫 팀 작업 완료율로 일관되게 정의했는지 검토한다. 단순 글자 수로 완성도를 판단하지 않는다.",
+        "section_ids": [
+          "problem",
+          "options",
+          "proposal",
+          "plan"
+        ],
+        "source_document_ids": [
+          "S01-v1-research",
+          "S01-v1-product"
+        ],
+        "after_event_id": null
+      },
+      {
+        "id": "accuracy",
+        "title": "수치와 근거의 정확성",
+        "description": "신규 가입자 1,000명·초대 사용자 300명·완료자 240명을 구분하고 전체 기준 24%와 초대자 기준 80%의 분모를 혼동하지 않는지 확인한다. 문의 18/40을 전체 이용자 비율로 일반화하지 않는지 본다.",
+        "section_ids": [
+          "problem",
+          "options",
+          "proposal"
+        ],
+        "source_document_ids": [
+          "S01-v1-research"
+        ],
+        "after_event_id": null
+      },
+      {
+        "id": "alternatives",
+        "title": "대안 비교와 선택 근거",
+        "description": "초대 진입점·팝업·템플릿 등의 대안을 사용자 문제·작업량·한계로 비교하고 선택 이유를 제시했는지 본다. 특정 기능 선택을 정답으로 요구하지 않는다.",
+        "section_ids": [
+          "options"
+        ],
+        "source_document_ids": [
+          "S01-v1-product",
+          "S01-v1-capacity"
+        ],
+        "after_event_id": null
+      },
+      {
+        "id": "changed_capacity",
+        "title": "변경된 4인일 제약 준수",
+        "description": "변경 후 4인일 안에 실행 가능한 범위인지 본다. 초대 진입점 2·팝업 3·템플릿 4·분석 정비 1인일, 두 기능 공통 검증 1인일을 고려한다. 공통 검증 적용 여부가 불명확하면 이를 남긴 것은 확정 견적과 구분한다.",
+        "section_ids": [
+          "proposal",
+          "plan"
+        ],
+        "source_document_ids": [
+          "S01-v1-capacity",
+          "S01-v1-change"
+        ],
+        "after_event_id": "capacity"
+      },
+      {
+        "id": "execution",
+        "title": "역할·일정·의존성의 실행 가능성",
+        "description": "담당별 역할·2주 개발 주기 내 작업 순서·의존성·미확정 사항을 검토한다. 작성되지 않은 세부 마감이나 담당 합의를 추정하지 않는다.",
+        "section_ids": [
+          "plan"
+        ],
+        "source_document_ids": [
+          "S01-v1-capacity"
+        ],
+        "after_event_id": null
+      },
+      {
+        "id": "verification",
+        "title": "가설과 성과 검증 계획",
+        "description": "기능 변경과 완료율 상승을 인과로 단정하지 않는지, 지표 분모·관찰 기간·비교 방식·성공 기준을 제안했는지 본다. 효과 수치가 없어도 근거 없는 예측보다 부족하다고 단정하지 않는다.",
+        "section_ids": [
+          "problem",
+          "plan"
+        ],
+        "source_document_ids": [
+          "S01-v1-research"
+        ],
+        "after_event_id": null
+      }
+    ]
+  }
+}

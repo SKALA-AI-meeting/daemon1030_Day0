@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "session_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "maxLength": 36,
+      "minLength": 1,
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "report_version": {
+      "const": "v1",
+      "default": "v1",
+      "title": "Report Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "session_id",
+    "snapshot_id"
+  ],
+  "title": "ReportJob",
+  "type": "object"
+}
